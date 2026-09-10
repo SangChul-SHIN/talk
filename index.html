@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="루슈닉">
+<meta name="theme-color" content="#EDE7DA">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAGZUlEQVR42u2dQY4dKwxFaRaU6Vc2kcVmE1Gmf/g38EfZQwYttaJOvcJQ2FzD8TByGeJ3GgoofN9+/f9fwbArq6QAAw4MODDgwIADAw4MODDgwIADAw4MODAMODDgwNzh+PHPt2YIfPbzacPxHuU+Fj77+bTh+PP5V7Hw2c/HBMfXn9/vx6JP//LJnzhJ41inlZv2uloiTq441hfSy/YGWiJOrjjv9mb5hvRmfrK3RJx0cUz7HMZ5jjibxanD7fW2RJx0caxwNN9+ibNfnDrW0lh7xMkVp/a21FxPE2ePOKX3bOW9pYH2iJMrThuOGwa72iNOrjhtOJo7J8b2iJMrjgmOG+7w2djHOq1czlj4bO/zYW+UYMCeboJtY1++flvyLHDkIGPsN37yLHBkGjN6f+MnzwJHAvv3x/exOeKT56c4wHEuH8eSceILaRcfJ5NRzrzUZOTjcDLKsTfemnxARjn5OuQNH5BxOhyv+ICMD2P7/O6d9GQyCrfsbwg4nAzgeMkBZACHdbUCHJABH8DxmoDh8xfgOIIM+ACOuzEDPo6Go7nTBR8J4Bi+6fWEjId8ePQZOK5zZ7/pZfHs2h0f4MOjz8Bx91dlv+l17zlwbtLFh0efgePCZt30ekJGLx/T+wwc43x0ZflmPdLFx/2zHlX9gKM71wNZvtzJ6OLD8uz0qn6rLMeR/d851c9yxj6nhKPMq5BHn/eZVprZVM5yxj6nhONVTpX3CS77loWMZHDMqoNGb3eDo6viEb09CI65GjP0dh847CtAhYzbVyj6fNSMZMjy0SQjFx816ZghyIdxzEjER81IhiAfXftdWfjIcSo7sJsUmfGBndDeqo/AYZqn1fgY3iPvqvq4xDa5K7vqFCP76ckO+xxdc1DY+LE3GWWnr8+D+diejLLZ1YQwPk4go+x3byWAj0PIKFteanLl4xwyyq433pz4OIqMsvF1yOl8nEZGHBxLtAom8uFBhr5+Qw0jY4lWwRQ+/MgQ12+okWPGEq2Ch3x4jxnK+g3ucChoFQzz4fSekUW/IWJaUdAqGODD9Q00hX5D0AupglZBFx8BaxN9/Ya4payCVoGRj7BVq7h+Q+g+h4JWQZOP4P0MZf2GBd9zvPrfRmZhYB/MdadLISeLR46bv5XgLPT+0t57oJr6Dcu+BFPQKjCOH2G742r6DcvOVhS0Ciy/euS5iZp+w8qDNwWtguGvlzfOiQQcCloFajeepfQbqg4Z8blQu/Gspt9QFchYUktarc6woH5DFSEjOBcTv+fYJifr4VDQKhjbA/XjQ1a/oYqQEZaL3ioJ3nwo6zdUHTICcjFWJcGPD4WcrIfDW6tg+mwSwIdCTtbD4a1V4PSe4cqHQk7WwxGgVeD0BurHh0JOJOCI0SrwIMOPj+U5EZpWYrQKPMjw5mNJTuy2SfEWPzKcoqWwChkLxw/g2IGMM/mokAEfp8AR8GZwDh8VMuBjfziCVxMn8FEhAz6ywrGqSkIMH6gmPCVjSZWEAD7Qsp8zZiypkuDKB1r2MzO+pEqCEx9o2fvyIXjSMVbfAS37yXzInoH11ndAyz5ozaKT61y9Tb/PoXbjeafepoej6N143qm36eEoQ18C09tT4Licy5Vzfdk3tOzj3vKUc52xz/nguF8BauY6Y5/zwWFRLLfnOkarYG6fgaP7728g1zFaBXP7DBwjI3NvrmO0Cub2GTgGs9yb6wCtgul9Bo72OtC+p3Tv6a1V4NFn4LjLoH032uLprVXg0edVtvN1yIe/+vLq0owca0xZqwA4pPmAjNPhKKpaBbxz6L5/QAYjR5uAw8kAjpccQAZwWFcrwAEZ8AEcrwlQ0CoADl0y4AM4dLUKgEN6NoGPc+EQ1yoADnUy4OM4OFJoFQBHDjIO5+MgOLJoFQDHSj7EtQp0jCN7bHTkmFUvEZ9cPm047JUe8dnJpw1Hb6VHfPbwMcHRW+lx+HYXcaTiWKcVe6XHripHxBGPY30htVR6HKiPRhzxOB1L2Vl1P4mTK45pE2xW7TPi5IpTh9ubpbFIHNk4Vji66tITZ484daylsfaIkytO7W1puCoNcXLFKb1nK8NV8YiTK04bjllV8YiTK04bjllV8YiTK44JDktFM3z287FOK5aKZvjs5/NhfAmGPd4Ew4ADw4ADAw4MODDgwIADAw4MODDgwIADAw4MK+U3G77vgYw9/gEAAAAASUVORK5CYII=">
+<title>루슈닉 · 영어 러시아어 회화</title>
+<style>
+:root{
+  --flax:#EDE7DA;
+  --paper:#FBF8F2;
+  --ink:#1B2028;
+  --muted:#6E6A61;
+  --thread:#B41E28;
+  --thread-soft:#E8CFCF;
+  --line:#DCD3C2;
+  --radius:14px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--flax);
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  font-size:16px;line-height:1.55;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.cyr{font-family:Georgia,"Times New Roman",serif}
+
+/* ── 자수 밴드 ───────────────────────── */
+.band{height:16px;background-repeat:repeat-x;background-size:24px 16px;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='16'><g stroke='%23B41E28' stroke-width='2.4' stroke-linecap='square'><path d='M3 3 L9 9 M9 3 L3 9'/><path d='M15 7 L21 13 M21 7 L15 13'/></g></svg>");
+}
+.band.faint{opacity:.28}
+
+header{padding:18px 20px 12px;max-width:720px;margin:0 auto}
+h1{margin:0;font-size:23px;font-weight:700;letter-spacing:-.02em}
+h1 span{color:var(--thread)}
+.sub{margin:4px 0 0;color:var(--muted);font-size:13.5px}
+
+main{max-width:720px;margin:0 auto;padding:0 20px 56px}
+
+/* ── 검색 ───────────────────────────── */
+.ask{margin-top:18px}
+.ask label{display:block;font-size:14px;color:var(--muted);margin-bottom:8px}
+.askrow{display:flex;gap:8px}
+#q{flex:1;min-width:0;background:var(--paper);border:1px solid var(--line);
+  border-radius:var(--radius);padding:14px 15px;font-size:17px;color:var(--ink);font-family:inherit}
+#q:focus{outline:2px solid var(--thread);outline-offset:1px;border-color:transparent}
+.go{background:var(--thread);color:#fff;border:0;border-radius:var(--radius);
+  padding:0 18px;font-size:16px;font-weight:600;font-family:inherit;cursor:pointer}
+.go:active{transform:translateY(1px)}
+
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.chip{background:transparent;border:1px solid var(--line);color:var(--muted);
+  border-radius:999px;padding:6px 12px;font-size:13.5px;font-family:inherit;cursor:pointer}
+.chip:active{background:var(--thread-soft)}
+
+/* ── 설정 줄 ─────────────────────────── */
+.bar{display:flex;align-items:center;gap:10px;margin-top:16px;flex-wrap:wrap}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--paper)}
+.seg button{border:0;background:transparent;padding:7px 12px;font-size:13.5px;
+  font-family:inherit;color:var(--muted);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--flax)}
+.voice{font-size:12.5px;color:var(--muted);flex:1;min-width:160px}
+.voice b{color:var(--ink);font-weight:600}
+
+/* ── 결과 ───────────────────────────── */
+.packhead{display:flex;align-items:baseline;gap:10px;margin:26px 0 2px}
+.packhead h2{margin:0;font-size:19px;font-weight:700;letter-spacing:-.01em}
+.packhead em{font-style:normal;font-size:13px;color:var(--muted)}
+
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+  padding:15px 16px 12px;margin-top:12px;position:relative}
+.mean{font-size:14px;color:var(--muted);margin:0 0 10px;padding-right:28px}
+.star{position:absolute;top:11px;right:11px;background:none;border:0;font-size:17px;
+  line-height:1;color:var(--line);cursor:pointer;padding:4px}
+.star[aria-pressed="true"]{color:var(--thread)}
+
+.lang{padding:9px 0;border-top:1px dashed var(--line)}
+.lang:first-of-type{border-top:0;padding-top:0}
+.tag{display:inline-block;font-size:11px;color:var(--thread);border:1px solid var(--thread-soft);
+  border-radius:5px;padding:1px 6px;margin-bottom:5px}
+.orig{margin:0;font-size:20px;line-height:1.4;letter-spacing:-.005em}
+.orig.cyr{font-size:21px}
+.say{margin:3px 0 0;font-size:16.5px;color:var(--thread);font-weight:600}
+.play{margin-top:7px;background:transparent;border:1px solid var(--line);border-radius:9px;
+  padding:6px 13px;font-size:13.5px;font-family:inherit;color:var(--ink);cursor:pointer}
+.play:active{background:var(--thread-soft)}
+.play.on{background:var(--ink);color:var(--flax);border-color:var(--ink)}
+
+.note{font-size:13px;color:var(--muted);background:transparent;border-left:2px solid var(--thread-soft);
+  padding:2px 0 2px 11px;margin:14px 0 0}
+
+/* ── 전체 상황 목록 ──────────────────── */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px}
+.grid button{background:var(--paper);border:1px solid var(--line);border-radius:11px;
+  padding:12px 13px;text-align:left;font-family:inherit;font-size:14.5px;color:var(--ink);cursor:pointer}
+.grid button:active{border-color:var(--thread)}
+.grid button small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+
+footer{max-width:720px;margin:0 auto;padding:24px 20px 40px;color:var(--muted);font-size:12.5px}
+footer p{margin:0 0 6px}
+hr.stitch{border:0;height:16px;margin:30px 0 0;background-repeat:repeat-x;background-size:24px 16px;opacity:.3;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='16'><g stroke='%23B41E28' stroke-width='2.4' stroke-linecap='square'><path d='M3 3 L9 9 M9 3 L3 9'/><path d='M15 7 L21 13 M21 7 L15 13'/></g></svg>");
+}
+/* ── 내 상황 만들기 ─────────────────── */
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:15px 16px;margin-top:12px}
+.panel h3{margin:0 0 4px;font-size:15.5px;font-weight:700}
+.panel p.hint{margin:0 0 10px;font-size:13px;color:var(--muted)}
+.panel textarea{width:100%;background:var(--flax);border:1px solid var(--line);border-radius:10px;
+  padding:11px 12px;font-size:15px;font-family:inherit;color:var(--ink);resize:vertical}
+.panel input[type=text]{width:100%;background:var(--flax);border:1px solid var(--line);border-radius:10px;
+  padding:10px 12px;font-size:15px;font-family:inherit;color:var(--ink);margin-bottom:7px}
+.panel textarea:focus,.panel input:focus{outline:2px solid var(--thread);outline-offset:1px;border-color:transparent}
+.panel .row{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap}
+.act{background:var(--ink);color:var(--flax);border:0;border-radius:10px;padding:10px 15px;
+  font-size:14.5px;font-weight:600;font-family:inherit;cursor:pointer}
+.act.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);font-weight:500}
+.msg{font-size:13px;margin:9px 0 0;color:var(--thread);min-height:1em}
+.mine{border-color:var(--thread-soft)}
+.del{background:none;border:0;color:var(--muted);font-size:12.5px;font-family:inherit;
+  cursor:pointer;text-decoration:underline;padding:0}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="band"></div>
+
+<header>
+  <h1>루슈닉 <span>·</span> 회화 수첩</h1>
+  <p class="sub">상황을 입력하면 영어·러시아어 원문과 한글 발음, 뜻이 함께 나옵니다. 인터넷 없이도 열립니다.</p>
+</header>
+
+<main>
+  <section class="ask">
+    <label for="q">지금 어떤 상황인가요?</label>
+    <div class="askrow">
+      <input id="q" type="search" placeholder="예: 카페에서 처음 만나 인사할 때" autocomplete="off" enterkeyhint="search">
+      <button class="go" id="goBtn">찾기</button>
+    </div>
+    <div class="chips" id="chips"></div>
+  </section>
+
+  <div class="bar">
+    <div class="seg" role="group" aria-label="말하기 속도">
+      <button data-rate="0.6">느리게</button>
+      <button data-rate="0.85" aria-pressed="true">보통</button>
+      <button data-rate="1">실제 속도</button>
+    </div>
+    <div class="voice" id="voiceInfo">음성 확인 중…</div>
+  </div>
+
+  <div id="results"></div>
+
+  <hr class="stitch">
+  <div class="packhead"><h2>내 상황 만들기</h2><em>수첩에 영구 저장됩니다</em></div>
+
+  <div class="panel">
+    <h3>1. 상황을 적고 요청문 복사하기</h3>
+    <p class="hint">복사한 글을 Claude에 그대로 붙여넣으면 6문장 세트가 나옵니다.</p>
+    <textarea id="sitInput" rows="2" placeholder="예: 민스크 공항에서 처음 만나 꽃 건네며 인사할 때"></textarea>
+    <div class="row">
+      <button class="act" id="copyReq">요청문 복사</button>
+      <button class="act ghost" id="showReq">직접 보기</button>
+    </div>
+    <p class="msg" id="reqMsg"></p>
+    <textarea id="reqOut" rows="7" style="display:none;margin-top:8px" readonly></textarea>
+  </div>
+
+  <div class="panel">
+    <h3>2. 받은 결과를 수첩에 넣기</h3>
+    <p class="hint">Claude가 준 코드 상자를 통째로 붙여넣고 누르세요.</p>
+    <textarea id="jsonIn" rows="4" placeholder='{"name":"공항 마중","items":[ ... ]}'></textarea>
+    <div class="row"><button class="act" id="importBtn">수첩에 추가</button></div>
+    <p class="msg" id="impMsg"></p>
+  </div>
+
+  <div class="panel">
+    <h3>3. 한 문장만 바로 적어두기</h3>
+    <p class="hint">현장에서 들은 문장을 인터넷 없이 저장합니다. 뜻과 러시아어만 넣어도 됩니다.</p>
+    <input type="text" id="f_ko" placeholder="뜻 (한국어)">
+    <input type="text" id="f_ru" placeholder="Русский">
+    <input type="text" id="f_rk" placeholder="러시아어 한글 발음">
+    <input type="text" id="f_en" placeholder="English">
+    <input type="text" id="f_ek" placeholder="영어 한글 발음">
+    <div class="row"><button class="act" id="addOne">내 문장에 추가</button></div>
+    <p class="msg" id="oneMsg"></p>
+  </div>
+
+  <hr class="stitch">
+  <div class="packhead"><h2>상황 전체</h2><em>탭하면 바로 열립니다</em></div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer>
+  <div class="band faint" style="margin-bottom:14px"></div>
+  <p><b>홈 화면에 추가</b> — Safari 하단 공유 버튼 → ‘홈 화면에 추가’. 아이콘이 생기고, 한 번 연 뒤에는 인터넷 없이도 열립니다.</p>
+  <p><b>음성</b> — 아이폰에 벨라루스어 음성이 없으면 러시아어 여성 음성이 자동 선택됩니다. 설정 → 손쉬운 사용 → 콘텐츠 말하기 → 음성 → 러시아어에서 Milena(밀레나)를 받으면 소리가 훨씬 또렷해집니다.</p>
+  <p><b>한글 발음은 근사치입니다.</b> ы, щ, л, р, в 는 한글로 정확히 적을 수 없으니 소리를 듣고 따라 하세요.</p>
+</footer>
+
+<script>
+/* ────────── 구문 데이터 ────────── */
+const PACKS = [
+{id:"greet",name:"첫 인사 · 자기소개",kw:"인사 처음 만남 소개 이름 안녕 반가워 자기소개 hello",
+ items:[
+ {ko:"안녕! 만나서 반가워",en:"Hi! Nice to meet you.",ek:"하이! 나이스 투 밋츄",ru:"Приве́т! О́чень прия́тно.",rk:"쁘리볫! 오친 쁘리얏나"},
+ {ko:"내 이름은 민수야",en:"I'm Minsu.",ek:"아임 민수",ru:"Меня́ зову́т Минсу́.",rk:"미냐 자붓 민수"},
+ {ko:"한국에서 왔어",en:"I'm from Korea.",ek:"아임 프롬 코리아",ru:"Я из Коре́и.",rk:"야 이즈 까례이"},
+ {ko:"이름이 뭐야?",en:"What's your name?",ek:"왓츠 유어 네임",ru:"Как тебя́ зову́т?",rk:"깍 찌뱌 자붓"},
+ {ko:"어디서 왔어?",en:"Where are you from?",ek:"웨어 아 유 프롬",ru:"Отку́да ты?",rk:"앗쿠다 띄"},
+ {ko:"만나서 정말 반가워",en:"It's really good to meet you.",ek:"잇츠 리얼리 굿 투 밋츄",ru:"Мне о́чень прия́тно познако́миться.",rk:"므녜 오친 쁘리얏나 빠즈나코미짜"}]},
+
+{id:"dm",name:"온라인 첫 메시지",kw:"메신저 텔레그램 인스타 디엠 dm 채팅 첫 메시지 온라인 말 걸기",
+ items:[
+ {ko:"안녕, 사진 보고 인사하고 싶었어",en:"Hey, I saw your photo and wanted to say hi.",ek:"헤이, 아이 쏘 유어 포토 앤 원티드 투 세이 하이",ru:"Приве́т, уви́дел твоё фо́то и реши́л написа́ть.",rk:"쁘리볫, 우비질 뜨바요 포타 이 리실 나피삿"},
+ {ko:"방해했다면 미안",en:"Sorry if I'm bothering you.",ek:"쏘리 이프 아임 바더링 유",ru:"Извини́, е́сли отвлека́ю.",rk:"이즈비니, 예슬리 앗블리카유"},
+ {ko:"얘기 좀 나눠볼래?",en:"Would you like to chat a bit?",ek:"우쥬 라익 투 챗 어 빗",ru:"Хо́чешь немно́го пообща́ться?",rk:"호치쉬 님노가 빠압샤짜"},
+ {ko:"나 러시아어 배우는 중이야",en:"I'm learning Russian.",ek:"아임 러닝 러쉬안",ru:"Я учу́ ру́сский язы́к.",rk:"야 우추 루스키 이즥"},
+ {ko:"조금만 천천히 말해줄래?",en:"Could you speak a little slower?",ek:"쿠쥬 스픽 어 리틀 슬로워",ru:"Говори́, пожа́луйста, ме́дленнее.",rk:"가바리, 빠잘루스타, 몌들레녜예"},
+ {ko:"어떤 언어가 편해?",en:"Which language do you prefer?",ek:"위치 랭귀지 두 유 프리퍼",ru:"На како́м языке́ тебе́ удо́бнее?",rk:"나 까콤 이즤케 찌볘 우도브녜예"}]},
+
+{id:"cafe",name:"카페 · 음료 주문",kw:"카페 커피 주문 음료 차 카푸치노 계산 자리",
+ items:[
+ {ko:"커피 한 잔 주세요",en:"One coffee, please.",ek:"원 커피, 플리즈",ru:"Оди́н ко́фе, пожа́луйста.",rk:"아진 코페, 빠잘루스타"},
+ {ko:"뭐 마실래?",en:"What would you like to drink?",ek:"왓 우쥬 라익 투 드링크",ru:"Что бу́дешь пить?",rk:"쉬또 부졔쉬 삣"},
+ {ko:"내가 살게",en:"It's on me.",ek:"잇츠 온 미",ru:"Я угоща́ю.",rk:"야 우가샤유"},
+ {ko:"여기 앉아도 될까?",en:"May I sit here?",ek:"메이 아이 씻 히어",ru:"Мо́жно сесть здесь?",rk:"모즈나 셰스찌 즈졔시"},
+ {ko:"계산할게요",en:"The check, please.",ek:"더 첵, 플리즈",ru:"Счёт, пожа́луйста.",rk:"쑈트, 빠잘루스타"},
+ {ko:"정말 맛있다",en:"This is really good.",ek:"디스 이즈 리얼리 굿",ru:"Э́то о́чень вку́сно.",rk:"에따 오친 프쿠스나"}]},
+
+{id:"food",name:"식당 · 식사",kw:"식당 밥 음식 메뉴 저녁 점심 배고파 맛집 추천",
+ items:[
+ {ko:"뭐 추천해?",en:"What do you recommend?",ek:"왓 두 유 레커멘드",ru:"Что посове́туешь?",rk:"쉬또 빠사볘투예쉬"},
+ {ko:"나 배고파",en:"I'm hungry.",ek:"아임 헝그리",ru:"Я го́лоден.",rk:"야 골라졘"},
+ {ko:"메뉴 좀 볼 수 있을까요?",en:"Could I see the menu?",ek:"쿠다이 씨 더 메뉴",ru:"Мо́жно меню́?",rk:"모즈나 미뉴"},
+ {ko:"맵지 않게 해주세요",en:"Not spicy, please.",ek:"낫 스파이시, 플리즈",ru:"Не о́стро, пожа́луйста.",rk:"니 오스트라, 빠잘루스타"},
+ {ko:"잘 먹었어",en:"That was delicious.",ek:"댓 워즈 딜리셔스",ru:"Бы́ло о́чень вку́сно.",rk:"븰라 오친 프쿠스나"},
+ {ko:"한국 음식 먹어봤어?",en:"Have you tried Korean food?",ek:"해뷰 트라이드 코리안 푸드",ru:"Ты про́бовала коре́йскую еду́?",rk:"띄 프로바발라 까례이스쿠유 이두"}]},
+
+{id:"date",name:"만남 제안 · 약속",kw:"데이트 약속 만나자 주말 시간 있어 산책 영화 제안",
+ items:[
+ {ko:"커피 한잔 할래?",en:"Would you like to grab a coffee?",ek:"우쥬 라익 투 그랩 어 커피",ru:"Не хо́чешь вы́пить ко́фе?",rk:"니 호치쉬 븨핏 코페"},
+ {ko:"주말에 시간 있어?",en:"Are you free this weekend?",ek:"아 유 프리 디스 위켄드",ru:"Ты свобо́дна в выходны́е?",rk:"띄 스바보드나 브 븨하드늬예"},
+ {ko:"같이 산책할래?",en:"Want to take a walk together?",ek:"원투 테이커 웍 투게더",ru:"Погуля́ем вме́сте?",rk:"빠굴랴옘 브몌스쪠"},
+ {ko:"어디서 만날까?",en:"Where should we meet?",ek:"웨어 슈드 위 밋",ru:"Где встре́тимся?",rk:"그졔 프스트례찜샤"},
+ {ko:"7시에 만나자",en:"Let's meet at seven.",ek:"렛츠 밋 앳 세븐",ru:"Дава́й в семь.",rk:"다바이 프 셈"},
+ {ko:"데려다줄게",en:"I'll walk you home.",ek:"아일 웍 유 홈",ru:"Я провожу́ тебя́.",rk:"야 쁘라바주 찌뱌"}]},
+
+{id:"compliment",name:"칭찬 · 호감 표현",kw:"칭찬 예쁘다 멋지다 미소 목소리 호감 좋아 매력",
+ items:[
+ {ko:"너 정말 예쁘다",en:"You look beautiful.",ek:"유 룩 뷰티풀",ru:"Ты о́чень краси́вая.",rk:"띄 오친 끄라시바야"},
+ {ko:"미소가 참 예뻐",en:"You have a lovely smile.",ek:"유 해버 러블리 스마일",ru:"У тебя́ прекра́сная улы́бка.",rk:"우 찌뱌 쁘리크라스나야 울릅카"},
+ {ko:"너 정말 똑똑해",en:"You're really smart.",ek:"유아 리얼리 스마트",ru:"Ты о́чень у́мная.",rk:"띄 오친 움나야"},
+ {ko:"오늘 멋져 보여",en:"You look great today.",ek:"유 룩 그레잇 투데이",ru:"Ты сего́дня прекра́сно вы́глядишь.",rk:"띄 시보드냐 쁘리크라스나 븨글랴지쉬"},
+ {ko:"목소리가 좋다",en:"I like your voice.",ek:"아이 라익 유어 보이스",ru:"Мне нра́вится твой го́лос.",rk:"므녜 느라비짜 뜨보이 골라스"},
+ {ko:"너랑 있으면 편해",en:"I feel comfortable with you.",ek:"아이 필 컴퍼터블 위드 유",ru:"Мне легко́ с тобо́й.",rk:"므녜 리흐코 스 따보이"}]},
+
+{id:"daily",name:"하루 안부",kw:"안부 하루 오늘 어땠어 피곤 잘자 좋은아침 보고싶어 일상",
+ items:[
+ {ko:"오늘 하루 어땠어?",en:"How was your day?",ek:"하우 워즈 유어 데이",ru:"Как прошёл твой день?",rk:"깍 쁘라숄 뜨보이 졘"},
+ {ko:"방금 일 끝났어",en:"I just finished work.",ek:"아이 저스트 피니쉬드 웍",ru:"Я то́лько что зако́нчил рабо́ту.",rk:"야 톨카 쉬또 자콘칠 라보투"},
+ {ko:"좀 피곤해",en:"I'm a bit tired.",ek:"아임 어 빗 타이어드",ru:"Я немно́го уста́л.",rk:"야 님노가 우스탈"},
+ {ko:"잘 자",en:"Good night.",ek:"굿 나잇",ru:"Споко́йной но́чи.",rk:"스파코이나이 노치"},
+ {ko:"좋은 아침",en:"Good morning.",ek:"굿 모닝",ru:"До́брое у́тро.",rk:"도브라예 우트라"},
+ {ko:"보고 싶었어",en:"I missed you.",ek:"아이 미스트 유",ru:"Я скуча́л по тебе́.",rk:"야 스쿠찰 빠 찌볘"}]},
+
+{id:"hobby",name:"취미 · 관심사",kw:"취미 관심사 영화 음악 사진 일 직업 좋아하는 것",
+ items:[
+ {ko:"취미가 뭐야?",en:"What do you like to do?",ek:"왓 두 유 라익 투 두",ru:"Чем ты увлека́ешься?",rk:"쳄 띄 우블리카예쉬샤"},
+ {ko:"사진 찍는 걸 좋아해",en:"I love taking photos.",ek:"아이 러브 테이킹 포토스",ru:"Я люблю́ фотографи́ровать.",rk:"야 류블류 파타그라피라밧"},
+ {ko:"영화 좋아해?",en:"Do you like movies?",ek:"두 유 라익 무비스",ru:"Ты лю́бишь кино́?",rk:"띄 류비쉬 키노"},
+ {ko:"어떤 음악 들어?",en:"What music do you listen to?",ek:"왓 뮤직 두 유 리슨 투",ru:"Каку́ю му́зыку ты слу́шаешь?",rk:"까쿠유 무즤쿠 띄 슬루샤예쉬"},
+ {ko:"나는 영상 만드는 일을 해",en:"I make videos for a living.",ek:"아이 메익 비디오스 포러 리빙",ru:"Я снима́ю ви́део.",rk:"야 스니마유 비지오"},
+ {ko:"같이 해보자",en:"Let's try it together.",ek:"렛츠 트라이 잇 투게더",ru:"Дава́й попро́буем вме́сте.",rk:"다바이 빠프로부옘 브몌스쪠"}]},
+
+{id:"call",name:"전화 · 영상통화",kw:"전화 통화 영상통화 화상 안들려 연결 목소리",
+ items:[
+ {ko:"지금 통화 괜찮아?",en:"Can you talk now?",ek:"캔 유 톡 나우",ru:"Мо́жешь говори́ть сейча́с?",rk:"모지쉬 가바릿 시차스"},
+ {ko:"영상통화 할래?",en:"Want to video call?",ek:"원투 비디오 콜",ru:"Дава́й по видеосвя́зи?",rk:"다바이 빠 비지오스뱌지"},
+ {ko:"잘 안 들려",en:"I can't hear you well.",ek:"아이 캔트 히어 유 웰",ru:"Пло́хо слы́шно.",rk:"플로하 슬릐쉬나"},
+ {ko:"다시 말해줄래?",en:"Could you say that again?",ek:"쿠쥬 세이 댓 어겐",ru:"Повтори́, пожа́луйста.",rk:"빠프타리, 빠잘루스타"},
+ {ko:"연결이 끊겼어",en:"The connection dropped.",ek:"더 커넥션 드랍트",ru:"Связь пропа́ла.",rk:"스뱌시 쁘라팔라"},
+ {ko:"나중에 다시 걸게",en:"I'll call you later.",ek:"아일 콜 유 레이터",ru:"Я перезвоню́ поздне́е.",rk:"야 삐리즈바뉴 빠즈드녜예"}]},
+
+{id:"way",name:"길찾기 · 이동",kw:"길 지하철 택시 어디 도와주세요 이동 버스 역 길을 잃었",
+ items:[
+ {ko:"여기가 어디예요?",en:"Where am I?",ek:"웨어 앰 아이",ru:"Где я нахожу́сь?",rk:"그졔 야 나하주시"},
+ {ko:"거기 어떻게 가요?",en:"How do I get there?",ek:"하우 두 아이 겟 데어",ru:"Как туда́ дойти́?",rk:"깍 뚜다 다이찌"},
+ {ko:"도와주실 수 있나요?",en:"Could you help me?",ek:"쿠쥬 헬프 미",ru:"Вы мо́жете мне помо́чь?",rk:"븨 모지쪠 므녜 빠모치"},
+ {ko:"지하철역이 어디예요?",en:"Where is the metro station?",ek:"웨어 이즈 더 메트로 스테이션",ru:"Где ста́нция метро́?",rk:"그졔 스탄찌야 미트로"},
+ {ko:"택시 불러주세요",en:"Please call a taxi.",ek:"플리즈 콜 어 택시",ru:"Вы́зовите такси́, пожа́луйста.",rk:"븨자비쪠 딱시, 빠잘루스타"},
+ {ko:"길을 잃었어요",en:"I'm lost.",ek:"아임 로스트",ru:"Я заблуди́лся.",rk:"야 자블루질샤"}]},
+
+{id:"shop",name:"쇼핑 · 계산",kw:"쇼핑 가격 얼마 카드 선물 사다 입어봐도 마트",
+ items:[
+ {ko:"얼마예요?",en:"How much is it?",ek:"하우 머치 이즈 잇",ru:"Ско́лько сто́ит?",rk:"스콜카 스토잇"},
+ {ko:"이거 살게요",en:"I'll take this.",ek:"아일 테익 디스",ru:"Я возьму́ э́то.",rk:"야 바지무 에따"},
+ {ko:"카드로 돼요?",en:"Do you take card?",ek:"두 유 테익 카드",ru:"Мо́жно ка́ртой?",rk:"모즈나 카르타이"},
+ {ko:"입어봐도 될까요?",en:"Can I try it on?",ek:"캔 아이 트라이 잇 온",ru:"Мо́жно приме́рить?",rk:"모즈나 쁘리몌릿"},
+ {ko:"더 싼 거 있어요?",en:"Do you have something cheaper?",ek:"두 유 햅 썸띵 취퍼",ru:"Есть подеше́вле?",rk:"예스찌 빠지셰블례"},
+ {ko:"선물 포장해 주세요",en:"Gift wrap, please.",ek:"기프트 랩, 플리즈",ru:"Заверни́те как пода́рок.",rk:"자비르니쪠 깍 빠다락"}]},
+
+{id:"emotion",name:"감정 표현 · 위로",kw:"감정 기뻐 걱정 괜찮아 힘내 위로 슬퍼 이해",
+ items:[
+ {ko:"정말 기뻐",en:"I'm really happy.",ek:"아임 리얼리 해피",ru:"Я о́чень рад.",rk:"야 오친 랏"},
+ {ko:"걱정돼",en:"I'm worried.",ek:"아임 워리드",ru:"Я волну́юсь.",rk:"야 발누유시"},
+ {ko:"괜찮아?",en:"Are you okay?",ek:"아 유 오케이",ru:"Ты в поря́дке?",rk:"띄 프 빠랴트꼐"},
+ {ko:"이해해",en:"I understand.",ek:"아이 언더스탠드",ru:"Я понима́ю.",rk:"야 빠니마유"},
+ {ko:"힘내",en:"Hang in there.",ek:"행 인 데어",ru:"Держи́сь.",rk:"지르지시"},
+ {ko:"난 네 편이야",en:"I'm on your side.",ek:"아임 온 유어 사이드",ru:"Я на твое́й стороне́.",rk:"야 나 뜨바예이 스타라녜"}]},
+
+{id:"sorry",name:"사과 · 오해 풀기",kw:"사과 미안 화났어 오해 실수 다퉜 싸움 용서",
+ items:[
+ {ko:"미안해",en:"I'm sorry.",ek:"아임 쏘리",ru:"Прости́ меня́.",rk:"쁘라스찌 미냐"},
+ {ko:"그런 뜻이 아니었어",en:"I didn't mean it that way.",ek:"아이 디든 민 잇 댓 웨이",ru:"Я не то име́л в виду́.",rk:"야 니 또 이몔 브 비두"},
+ {ko:"내 실수야",en:"That was my mistake.",ek:"댓 워즈 마이 미스테익",ru:"Э́то моя́ оши́бка.",rk:"에따 마야 아싑카"},
+ {ko:"기분 상했어?",en:"Are you upset?",ek:"아 유 업셋",ru:"Ты оби́делась?",rk:"띄 아비질라시"},
+ {ko:"얘기하고 싶어",en:"I want to talk about it.",ek:"아이 원투 톡 어바웃 잇",ru:"Я хочу́ поговори́ть.",rk:"야 하추 빠가바릿"},
+ {ko:"다시는 안 그럴게",en:"It won't happen again.",ek:"잇 원트 해픈 어겐",ru:"Э́то бо́льше не повтори́тся.",rk:"에따 볼셰 니 빠프타리짜"}]},
+
+{id:"bye",name:"헤어질 때 · 다음 약속",kw:"헤어질 작별 잘가 또 보자 조심히 도착하면 연락",
+ items:[
+ {ko:"오늘 정말 즐거웠어",en:"I had a great time.",ek:"아이 해더 그레잇 타임",ru:"Мне бы́ло о́чень прия́тно.",rk:"므녜 븰라 오친 쁘리얏나"},
+ {ko:"또 보자",en:"Let's meet again.",ek:"렛츠 밋 어겐",ru:"Дава́й встре́тимся ещё раз.",rk:"다바이 프스트례찜샤 이쑈 라스"},
+ {ko:"조심히 가",en:"Take care.",ek:"테익 케어",ru:"Береги́ себя́.",rk:"비리기 시뱌"},
+ {ko:"도착하면 연락해",en:"Text me when you get home.",ek:"텍스트 미 웬 유 겟 홈",ru:"Напиши́, как дойдёшь.",rk:"나피시, 깍 다이죠쉬"},
+ {ko:"잘 가",en:"Bye.",ek:"바이",ru:"Пока́.",rk:"빠카"},
+ {ko:"내일 연락할게",en:"I'll message you tomorrow.",ek:"아일 메시지 유 투마로우",ru:"Напишу́ тебе́ за́втра.",rk:"나피슈 찌볘 자프트라"}]},
+
+{id:"family",name:"가족 · 고향 이야기",kw:"가족 부모님 형제 자매 고향 어디서 자랐 한국 초대",
+ items:[
+ {ko:"가족 얘기 좀 해줄래?",en:"Tell me about your family.",ek:"텔 미 어바웃 유어 패밀리",ru:"Расскажи́ о свое́й семье́.",rk:"라스카지 아 스바예이 시몌"},
+ {ko:"형제자매 있어?",en:"Do you have brothers or sisters?",ek:"두 유 햅 브라더스 오어 시스터스",ru:"У тебя́ есть бра́тья и́ли сёстры?",rk:"우 찌뱌 예스찌 브라찌야 일리 쇼스트릐"},
+ {ko:"부모님과 같이 살아",en:"I live with my parents.",ek:"아이 리브 위드 마이 페어런츠",ru:"Я живу́ с роди́телями.",rk:"야 지부 스 라지쪨랴미"},
+ {ko:"어디서 자랐어?",en:"Where did you grow up?",ek:"웨어 디쥬 그로우 업",ru:"Где ты вы́росла?",rk:"그졔 띄 븨라슬라"},
+ {ko:"한국에 와본 적 있어?",en:"Have you ever been to Korea?",ek:"해뷰 에버 빈 투 코리아",ru:"Ты была́ в Коре́е?",rk:"띄 븰라 프 까례예"},
+ {ko:"언젠가 한국에 초대하고 싶어",en:"I'd like to invite you to Korea someday.",ek:"아이드 라익 투 인바이트 유 투 코리아 썸데이",ru:"Хочу́ когда́-нибудь пригласи́ть тебя́ в Коре́ю.",rk:"하추 까그다니붓 쁘리글라싯 찌뱌 프 까례유"}]},
+
+{id:"love",name:"마음 표현",kw:"고백 좋아해 사랑해 마음 진심 연인 사귀자 관계",
+ items:[
+ {ko:"너에 대해 더 알고 싶어",en:"I want to know you better.",ek:"아이 원투 노우 유 베터",ru:"Хочу́ узна́ть тебя́ лу́чше.",rk:"하추 우즈낫 찌뱌 루체"},
+ {ko:"네 생각 많이 했어",en:"I've been thinking about you.",ek:"아이브 빈 띵킹 어바웃 유",ru:"Я мно́го ду́мал о тебе́.",rk:"야 므노가 두말 아 찌볘"},
+ {ko:"너랑 있으면 좋아",en:"I like being with you.",ek:"아이 라익 빙 위드 유",ru:"Мне хорошо́ с тобо́й.",rk:"므녜 하라쇼 스 따보이"},
+ {ko:"너 좋아해",en:"I like you.",ek:"아이 라익 유",ru:"Ты мне нра́вишься.",rk:"띄 므녜 느라비쉬샤"},
+ {ko:"사랑해",en:"I love you.",ek:"아이 러브 유",ru:"Я тебя́ люблю́.",rk:"야 찌뱌 류블류"},
+ {ko:"서두르지 않을게",en:"I won't rush you.",ek:"아이 원트 러쉬 유",ru:"Я не бу́ду торопи́ть.",rk:"야 니 부두 따라핏"}]},
+
+{id:"help",name:"아플 때 · 도움 요청",kw:"아파 병원 약국 의사 도와주세요 머리 몸살 응급",
+ items:[
+ {ko:"몸이 안 좋아",en:"I don't feel well.",ek:"아이 돈트 필 웰",ru:"Мне пло́хо.",rk:"므녜 플로하"},
+ {ko:"약국이 어디예요?",en:"Where is a pharmacy?",ek:"웨어 이즈 어 파머시",ru:"Где апте́ка?",rk:"그졔 아프쪠카"},
+ {ko:"의사가 필요해요",en:"I need a doctor.",ek:"아이 니더 닥터",ru:"Мне ну́жен врач.",rk:"므녜 누젠 브라치"},
+ {ko:"머리가 아파",en:"I have a headache.",ek:"아이 해버 헤드에익",ru:"У меня́ боли́т голова́.",rk:"우 미냐 발릿 갈라바"},
+ {ko:"도와주세요",en:"Help, please.",ek:"헬프, 플리즈",ru:"Помоги́те, пожа́луйста.",rk:"빠마기쪠, 빠잘루스타"},
+ {ko:"병원에 같이 가줄래?",en:"Could you come with me to the doctor?",ek:"쿠쥬 컴 위드 미 투 더 닥터",ru:"Пойдёшь со мной к врачу́?",rk:"빠이죠쉬 사 므노이 크 브라추"}]},
+
+{id:"hotel",name:"공항 · 호텔",kw:"공항 호텔 체크인 예약 짐 와이파이 마중 비행기 여행",
+ items:[
+ {ko:"예약했어요",en:"I have a reservation.",ek:"아이 해버 레저베이션",ru:"У меня́ есть брони́рование.",rk:"우 미냐 예스찌 브라니라바니예"},
+ {ko:"체크인 할게요",en:"I'd like to check in.",ek:"아이드 라익 투 체크 인",ru:"Я хоте́л бы засели́ться.",rk:"야 하쪨 븨 자실리짜"},
+ {ko:"와이파이 비밀번호가 뭐예요?",en:"What's the wifi password?",ek:"왓츠 더 와이파이 패스워드",ru:"Како́й паро́ль от вай-фа́я?",rk:"까코이 빠롤 앗 바이파야"},
+ {ko:"짐 맡길 수 있나요?",en:"Can I leave my luggage?",ek:"캔 아이 리브 마이 러기지",ru:"Мо́жно оста́вить бага́ж?",rk:"모즈나 아스타빗 바가시"},
+ {ko:"공항까지 얼마나 걸려요?",en:"How long does it take to the airport?",ek:"하우 롱 더즈 잇 테익 투 디 에어포트",ru:"Ско́лько е́хать до аэропо́рта?",rk:"스콜카 예핫 다 아에라포르타"},
+ {ko:"마중 나갈게",en:"I'll pick you up.",ek:"아일 픽 유 업",ru:"Я тебя́ встре́чу.",rk:"야 찌뱌 프스트례추"}]},
+
+{id:"morning",name:"생활 · 아침과 밤",kw:"생활 일상 아침 밤 일어나 잠 자다 늦잠 잘자 하루시작",
+ items:[
+ {ko:"방금 일어났어",en:"I just woke up.",ek:"아이 저스트 워크 업",ru:"Я то́лько что просну́лся.",rk:"야 톨카 쉬또 쁘라스눌샤"},
+ {ko:"아직 자고 있었어?",en:"Were you still sleeping?",ek:"워 유 스틸 슬리핑",ru:"Ты ещё спала́?",rk:"띄 이쑈 스팔라"},
+ {ko:"일단 커피부터",en:"Coffee first.",ek:"커피 퍼스트",ru:"Снача́ла ко́фе.",rk:"스나찰라 코페"},
+ {ko:"오늘 늦잠 잤어",en:"I overslept today.",ek:"아이 오버슬렙트 투데이",ru:"Я сего́дня проспа́л.",rk:"야 시보드냐 쁘라스팔"},
+ {ko:"좋은 하루 보내",en:"Have a good day.",ek:"해버 굿 데이",ru:"Хоро́шего дня.",rk:"하로셰바 드냐"},
+ {ko:"이제 자러 갈게",en:"I'm going to bed now.",ek:"아임 고잉 투 베드 나우",ru:"Я иду́ спать.",rk:"야 이두 스팟"}]},
+
+{id:"weather",name:"생활 · 날씨와 계절",kw:"생활 날씨 춥다 덥다 비 눈 봄 여름 가을 겨울 계절",
+ items:[
+ {ko:"오늘 날씨 어때?",en:"What's the weather like today?",ek:"왓츠 더 웨더 라익 투데이",ru:"Кака́я сего́дня пого́да?",rk:"까카야 시보드냐 빠고다"},
+ {ko:"여기 너무 추워",en:"It's very cold here.",ek:"잇츠 베리 콜드 히어",ru:"Здесь о́чень хо́лодно.",rk:"즈졔시 오친 홀라드나"},
+ {ko:"비가 와",en:"It's raining.",ek:"잇츠 레이닝",ru:"Идёт дождь.",rk:"이죠트 도쉬찌"},
+ {ko:"눈이 많이 왔어",en:"It snowed a lot.",ek:"잇 스노우드 어 랏",ru:"Вы́пало мно́го сне́га.",rk:"븨팔라 므노가 스녜가"},
+ {ko:"따뜻하게 입어",en:"Dress warmly.",ek:"드레스 웜리",ru:"Одева́йся тепле́е.",rk:"아지바이샤 찌플례예"},
+ {ko:"나는 봄이 좋아",en:"I love spring.",ek:"아이 러브 스프링",ru:"Я люблю́ весну́.",rk:"야 류블류 비스누"}]},
+
+{id:"time",name:"생활 · 시간과 요일",kw:"생활 시간 몇시 요일 오늘 내일 다음주 늦어 약속시간 분",
+ items:[
+ {ko:"지금 몇 시야?",en:"What time is it?",ek:"왓 타임 이즈 잇",ru:"Ско́лько вре́мени?",rk:"스콜카 브례미니"},
+ {ko:"오늘 무슨 요일이지?",en:"What day is it today?",ek:"왓 데이 이즈 잇 투데이",ru:"Како́й сего́дня день?",rk:"까코이 시보드냐 졘"},
+ {ko:"30분 뒤에",en:"In thirty minutes.",ek:"인 써티 미닛츠",ru:"Че́рез три́дцать мину́т.",rk:"체리스 뜨리짯 미눗"},
+ {ko:"조금 늦을 것 같아",en:"I'll be a little late.",ek:"아일 비 어 리틀 레이트",ru:"Я немно́го опозда́ю.",rk:"야 님노가 아파즈다유"},
+ {ko:"내일 시간 돼?",en:"Are you free tomorrow?",ek:"아 유 프리 투마로우",ru:"Ты свобо́дна за́втра?",rk:"띄 스바보드나 자프트라"},
+ {ko:"다음 주에 보자",en:"See you next week.",ek:"씨 유 넥스트 위크",ru:"Уви́димся на сле́дующей неде́ле.",rk:"우비짐샤 나 슬례두유쎼이 니졜례"}]},
+
+{id:"home",name:"생활 · 집에서",kw:"생활 집 청소 요리 저녁 쉬는중 휴식 산책 집안일 뭐해",
+ items:[
+ {ko:"지금 집이야",en:"I'm at home.",ek:"아임 앳 홈",ru:"Я до́ма.",rk:"야 도마"},
+ {ko:"그냥 쉬고 있어",en:"I'm just relaxing.",ek:"아임 저스트 릴랙싱",ru:"Я про́сто отдыха́ю.",rk:"야 프로스타 앗듸하유"},
+ {ko:"청소하는 중이야",en:"I'm cleaning up.",ek:"아임 클리닝 업",ru:"Я убира́юсь.",rk:"야 우비라유시"},
+ {ko:"저녁 만들고 있어",en:"I'm making dinner.",ek:"아임 메이킹 디너",ru:"Я гото́влю у́жин.",rk:"야 가토블류 우진"},
+ {ko:"오늘은 아무것도 하기 싫어",en:"I don't feel like doing anything today.",ek:"아이 돈트 필 라익 두잉 애니띵 투데이",ru:"Сего́дня ничего́ не хочу́ де́лать.",rk:"시보드냐 니치보 니 하추 졜랏"},
+ {ko:"산책 다녀왔어",en:"I went for a walk.",ek:"아이 웬트 포러 웍",ru:"Я ходи́л гуля́ть.",rk:"야 하질 굴랴찌"}]},
+
+{id:"mobile",name:"생활 · 휴대폰과 메신저",kw:"생활 배터리 와이파이 사진 보내줘 답장 늦어 인터넷 폰 연락",
+ items:[
+ {ko:"배터리가 없어",en:"My battery is dying.",ek:"마이 배터리 이즈 다잉",ru:"У меня́ сади́тся батаре́я.",rk:"우 미냐 사지짜 바타례야"},
+ {ko:"와이파이가 안 돼",en:"The wifi isn't working.",ek:"더 와이파이 이즌트 워킹",ru:"Вай-фа́й не рабо́тает.",rk:"바이파이 니 라보타옛"},
+ {ko:"사진 보내줄래?",en:"Can you send me a photo?",ek:"캔 유 센드 미 어 포토",ru:"Мо́жешь присла́ть фо́то?",rk:"모지쉬 쁘리슬랏 포타"},
+ {ko:"메시지 이제 봤어",en:"I just saw your message.",ek:"아이 저스트 쏘 유어 메시지",ru:"То́лько что уви́дел твоё сообще́ние.",rk:"톨카 쉬또 우비질 뜨바요 사압셰니예"},
+ {ko:"답장 늦어서 미안",en:"Sorry for the late reply.",ek:"쏘리 포 더 레이트 리플라이",ru:"Извини́ за до́лгий отве́т.",rk:"이즈비니 자 돌기 앗볫"},
+ {ko:"나중에 쓸게",en:"I'll write later.",ek:"아일 라이트 레이터",ru:"Напишу́ по́зже.",rk:"나피슈 포제"}]},
+
+{id:"react",name:"생활 · 짧은 리액션",kw:"생활 리액션 맞장구 정말 대박 웃겨 몰라 그렇구나 잡담 스몰토크",
+ items:[
+ {ko:"정말?",en:"Really?",ek:"리얼리",ru:"Пра́вда?",rk:"프라브다"},
+ {ko:"대박이다",en:"That's amazing.",ek:"댓츠 어메이징",ru:"Э́то кру́то.",rk:"에따 크루타"},
+ {ko:"말도 안 돼",en:"No way.",ek:"노 웨이",ru:"Не мо́жет быть.",rk:"니 모젯 븨찌"},
+ {ko:"무슨 말인지 알아",en:"I know what you mean.",ek:"아이 노우 왓 유 민",ru:"Я тебя́ понима́ю.",rk:"야 찌뱌 빠니마유"},
+ {ko:"그거 웃긴다",en:"That's funny.",ek:"댓츠 퍼니",ru:"Э́то смешно́.",rk:"에따 스미쉬노"},
+ {ko:"잘 모르겠어",en:"I'm not sure.",ek:"아임 낫 슈어",ru:"Я не уве́рен.",rk:"야 니 우볘롄"}]}
+];
+
+/* ────────── 상태 ────────── */
+let rate = 0.85;
+let ruVoice = null, enVoice = null;
+const store = (()=>{ // 저장 실패해도 앱은 계속 동작
+  let mem = {};
+  try{ const t="__t"; localStorage.setItem(t,"1"); localStorage.removeItem(t);
+       return {get:k=>localStorage.getItem(k), set:(k,v)=>localStorage.setItem(k,v)}; }
+  catch(e){ return {get:k=>mem[k]??null, set:(k,v)=>{mem[k]=v;}}; }
+})();
+let favs = new Set(JSON.parse(store.get("favs")||"[]"));
+const saveFavs = ()=> store.set("favs", JSON.stringify([...favs]));
+
+/* ────────── 음성 ────────── */
+function pickVoices(){
+  const vs = speechSynthesis.getVoices();
+  if(!vs.length) return false;
+  const by = l => vs.find(v => (v.lang||"").toLowerCase().startsWith(l));
+  const named = re => vs.find(v => re.test(v.name||""));
+  // 벨라루스어 → 벨라루스 러시아어 → 러시아어 여성 순
+  ruVoice = by("be") || by("ru-by")
+         || named(/milena|katya|katia|yuliya|yulia|alyona|tatyana|мил|кат/i)
+         || by("ru");
+  enVoice = vs.find(v=>/samantha|karen|moira|serena|zira|female/i.test(v.name||"") && (v.lang||"").startsWith("en"))
+         || by("en");
+  const info = document.getElementById("voiceInfo");
+  if(ruVoice){
+    const be = (ruVoice.lang||"").toLowerCase().startsWith("be");
+    info.innerHTML = `러시아어 음성 <b>${ruVoice.name}</b>` + (be ? " · 벨라루스어" : " · 이 기기에 벨라루스어 음성이 없어 러시아어 음성을 씁니다");
+  }else{
+    info.textContent = "러시아어 음성이 없습니다. 설정 → 손쉬운 사용 → 콘텐츠 말하기 → 음성 → 러시아어에서 내려받으세요.";
+  }
+  return true;
+}
+if("speechSynthesis" in window){
+  pickVoices();
+  speechSynthesis.onvoiceschanged = pickVoices;
+}else{
+  document.getElementById("voiceInfo").textContent = "이 브라우저는 음성 재생을 지원하지 않습니다. Safari로 열어 주세요.";
+}
+
+let current = null;
+function speak(text, lang, btn){
+  if(!("speechSynthesis" in window)) return;
+  speechSynthesis.cancel();
+  if(current){ current.classList.remove("on"); }
+  const u = new SpeechSynthesisUtterance(text.replace(/\u0301/g,"")); // 강세부호 제거
+  const v = lang==="ru" ? ruVoice : enVoice;
+  if(v){ u.voice = v; u.lang = v.lang; } else { u.lang = lang==="ru" ? "ru-RU" : "en-US"; }
+  u.rate = rate; u.pitch = 1.05;
+  btn.classList.add("on"); current = btn;
+  u.onend = u.onerror = ()=>{ btn.classList.remove("on"); if(current===btn) current=null; };
+  speechSynthesis.speak(u);
+}
+
+/* ────────── 렌더 ────────── */
+function esc(s){ return s.replace(/[&<>]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c])); }
+
+function cardHTML(it, key){
+  const on = favs.has(key);
+  return `<article class="card">
+    <button class="star" aria-pressed="${on}" data-fav="${esc(key)}" aria-label="즐겨찾기">${on?"★":"☆"}</button>
+    <p class="mean">${esc(it.ko)}</p>
+    <div class="lang">
+      <span class="tag">Русский</span>
+      <p class="orig cyr">${esc(it.ru)}</p>
+      <p class="say">${esc(it.rk)}</p>
+      <button class="play" data-say="${esc(it.ru)}" data-lang="ru">러시아어 듣기</button>
+    </div>
+    <div class="lang">
+      <span class="tag">English</span>
+      <p class="orig">${esc(it.en)}</p>
+      <p class="say">${esc(it.ek)}</p>
+      <button class="play" data-say="${esc(it.en)}" data-lang="en">영어 듣기</button>
+    </div>
+  </article>`;
+}
+
+function showPack(pack, note){
+  const el = document.getElementById("results");
+  el.innerHTML = `<div class="packhead"><h2>${esc(pack.name)}</h2><em>${pack.items.length}문장</em></div>`
+    + (note ? `<p class="note">${esc(note)}</p>` : "")
+    + pack.items.map((it,i)=>cardHTML(it, pack.id+"-"+i)).join("")
+    + (pack.mine ? `<p class="note"><button class="del" data-del="${esc(pack.id)}">이 묶음 삭제</button></p>` : "");
+  el.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+let MINE = [];
+try{ MINE = JSON.parse(store.get("mypacks")||"[]"); }catch(e){ MINE = []; }
+const saveMine = ()=> store.set("mypacks", JSON.stringify(MINE));
+const ALL = ()=> PACKS.concat(MINE);
+
+function match(query){
+  const q = query.trim().toLowerCase();
+  if(!q) return null;
+  let best=null, bestScore=0;
+  for(const p of ALL()){
+    let s=0;
+    const hay = (p.name+" "+p.kw).toLowerCase();
+    for(const w of q.split(/[\s,·]+/).filter(Boolean)){
+      if(hay.includes(w)) s+=4;
+      else{ // 조사·어미가 붙은 입력은 앞부분만 잘라 다시 확인
+        for(let n=w.length-1; n>=2; n--){
+          if(hay.includes(w.slice(0,n))){ s += n; break; }
+        }
+      }
+      if(p.items.some(it=>it.ko.includes(w))) s+=3;
+    }
+    if(s>bestScore){ bestScore=s; best=p; }
+  }
+  return bestScore>0 ? best : null;
+}
+
+function search(){
+  const q = document.getElementById("q").value;
+  const p = match(q);
+  if(p){ showPack(p, `“${q}” 상황에 가까운 표현입니다.`); }
+  else {
+    document.getElementById("results").innerHTML =
+      `<p class="note">“${esc(q)}”와 맞는 묶음을 못 찾았습니다. 아래 상황 목록에서 가까운 것을 골라 보세요. 예: 카페, 데이트, 사과, 영상통화, 공항.</p>`;
+  }
+}
+
+/* ────────── 초기 UI ────────── */
+const CHIPS = ["생활 회화","처음 인사","텔레그램 첫 메시지","카페 주문","데이트 제안","칭찬하기","날씨 이야기","리액션","영상통화","사과하기"];
+document.getElementById("chips").innerHTML = CHIPS.map(c=>`<button class="chip">${c}</button>`).join("");
+function renderGrid(){
+  document.getElementById("grid").innerHTML = ALL().map(p=>
+    `<button data-pack="${p.id}"${p.mine?' class="mine"':''}>${p.mine?"● ":""}${esc(p.name)}<small>${p.items.length}문장</small></button>`).join("");
+}
+renderGrid();
+
+document.getElementById("goBtn").addEventListener("click", search);
+document.getElementById("q").addEventListener("keydown", e=>{ if(e.key==="Enter"){ e.preventDefault(); search(); }});
+
+document.addEventListener("click", e=>{
+  const chip = e.target.closest(".chip");
+  if(chip){ document.getElementById("q").value = chip.textContent; search(); return; }
+
+  const g = e.target.closest("[data-pack]");
+  if(g){ showPack(ALL().find(p=>p.id===g.dataset.pack)); return; }
+
+  const play = e.target.closest(".play");
+  if(play){ speak(play.dataset.say, play.dataset.lang, play); return; }
+
+  const fav = e.target.closest("[data-fav]");
+  if(fav){
+    const k = fav.dataset.fav;
+    if(favs.has(k)){ favs.delete(k); fav.textContent="☆"; fav.setAttribute("aria-pressed","false"); }
+    else { favs.add(k); fav.textContent="★"; fav.setAttribute("aria-pressed","true"); }
+    saveFavs(); return;
+  }
+
+  const seg = e.target.closest(".seg button");
+  if(seg){
+    rate = parseFloat(seg.dataset.rate);
+    seg.parentNode.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed", b===seg ? "true":"false"));
+  }
+});
+
+/* ────────── 내 상황 만들기 ────────── */
+function reqText(sit){
+return `아래 상황에 맞는 회화 카드 6개를 만들어줘.
+
+상황: ${sit}
+
+조건
+- 나는 한국인 성인 남성, 대화 상대는 여성이다.
+- 러시아어 동사 과거형은 남성형(사용자 기준), 상대를 가리키는 형용사·과거형은 여성형.
+- 러시아어에 강세 부호를 찍고, 한글 발음은 강세 없는 о를 아로 읽는 규칙을 반영.
+- 영어는 비원어민도 알아듣는 명료한 표현으로.
+
+아래 JSON만 출력하고 다른 설명은 붙이지 마.
+{"name":"상황 이름","items":[{"ko":"뜻","en":"영어","ek":"영어 한글발음","ru":"러시아어","rk":"러시아어 한글발음"}]}`;
+}
+function say(id,t,ok){ const e=document.getElementById(id); e.textContent=t; e.style.color = ok? "#2C6B4F" : "var(--thread)"; }
+
+document.getElementById("showReq").addEventListener("click", ()=>{
+  const sit=document.getElementById("sitInput").value.trim();
+  if(!sit){ say("reqMsg","상황을 먼저 적어 주세요."); return; }
+  const box=document.getElementById("reqOut");
+  box.value=reqText(sit); box.style.display="block"; box.select();
+  say("reqMsg","길게 눌러 전체 선택 후 복사하세요.",true);
+});
+document.getElementById("copyReq").addEventListener("click", async ()=>{
+  const sit=document.getElementById("sitInput").value.trim();
+  if(!sit){ say("reqMsg","상황을 먼저 적어 주세요."); return; }
+  const t=reqText(sit);
+  try{ await navigator.clipboard.writeText(t); say("reqMsg","복사했습니다. Claude에 붙여넣으세요.",true); }
+  catch(e){
+    const box=document.getElementById("reqOut");
+    box.value=t; box.style.display="block"; box.select();
+    say("reqMsg","자동 복사가 막혔습니다. 아래 글을 길게 눌러 복사하세요.");
+  }
+});
+
+function parsePack(raw){
+  let t = raw.trim().replace(/^```[a-z]*\s*/i,"").replace(/```$/,"").trim();
+  const a=t.indexOf("{"), b=t.lastIndexOf("}");
+  if(a<0||b<0) throw new Error("형식을 못 읽었습니다");
+  const o=JSON.parse(t.slice(a,b+1));
+  const items=(o.items||[]).filter(x=>x&&(x.ko||x.ru||x.en)).map(x=>({
+    ko:x.ko||"", en:x.en||"", ek:x.ek||"", ru:x.ru||"", rk:x.rk||""}));
+  if(!items.length) throw new Error("문장이 비어 있습니다");
+  return {id:"my"+Date.now(), name:(o.name||"내 상황").slice(0,40), kw:(o.name||"")+" 내 저장", mine:true, items};
+}
+document.getElementById("importBtn").addEventListener("click", ()=>{
+  const raw=document.getElementById("jsonIn").value;
+  if(!raw.trim()){ say("impMsg","붙여넣은 내용이 없습니다."); return; }
+  try{
+    const p=parsePack(raw);
+    MINE.push(p); saveMine(); renderGrid();
+    document.getElementById("jsonIn").value="";
+    say("impMsg",`‘${p.name}’ ${p.items.length}문장을 넣었습니다.`,true);
+    showPack(p);
+  }catch(e){ say("impMsg","읽지 못했습니다 — 코드 상자를 통째로 붙여넣었는지 확인하세요."); }
+});
+
+document.getElementById("addOne").addEventListener("click", ()=>{
+  const g=id=>document.getElementById(id).value.trim();
+  const it={ko:g("f_ko"),ru:g("f_ru"),rk:g("f_rk"),en:g("f_en"),ek:g("f_ek")};
+  if(!it.ko && !it.ru && !it.en){ say("oneMsg","뜻이나 문장을 하나는 적어 주세요."); return; }
+  let p=MINE.find(x=>x.id==="myown");
+  if(!p){ p={id:"myown",name:"내 문장",kw:"내 문장 저장 메모",mine:true,items:[]}; MINE.push(p); }
+  p.items.push(it); saveMine(); renderGrid();
+  ["f_ko","f_ru","f_rk","f_en","f_ek"].forEach(id=>document.getElementById(id).value="");
+  say("oneMsg",`저장했습니다. ‘내 문장’ 묶음에 ${p.items.length}문장.`,true);
+});
+
+document.addEventListener("click", e=>{
+  const d=e.target.closest("[data-del]");
+  if(!d) return;
+  const i=MINE.findIndex(p=>p.id===d.dataset.del);
+  if(i>-1){ MINE.splice(i,1); saveMine(); renderGrid(); showPack(PACKS[0], "묶음을 삭제했습니다."); }
+});
+
+showPack(PACKS[0]);
+</script>
+</body>
+</html>
