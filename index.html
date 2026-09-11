@@ -111,6 +111,22 @@ footer p{margin:0 0 6px}
 hr.stitch{border:0;height:16px;margin:30px 0 0;background-repeat:repeat-x;background-size:24px 16px;opacity:.3;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='16'><g stroke='%23B41E28' stroke-width='2.4' stroke-linecap='square'><path d='M3 3 L9 9 M9 3 L3 9'/><path d='M15 7 L21 13 M21 7 L15 13'/></g></svg>");
 }
+/* ── 자동 재생 ──────────────────────── */
+.player{background:var(--ink);color:var(--flax);border-radius:var(--radius);padding:13px 14px;margin-top:14px}
+.player h3{margin:0 0 9px;font-size:15px;font-weight:700;color:#fff}
+.player .opts{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px}
+.opt{border:1px solid rgba(255,255,255,.28);background:transparent;color:var(--flax);
+  border-radius:999px;padding:6px 12px;font-size:13px;font-family:inherit;cursor:pointer}
+.opt[aria-pressed="true"]{background:var(--thread);border-color:var(--thread);color:#fff;font-weight:600}
+.player .ctrl{display:flex;gap:8px;align-items:center}
+.big{flex:1;background:var(--thread);color:#fff;border:0;border-radius:11px;padding:13px;
+  font-size:16px;font-weight:700;font-family:inherit;cursor:pointer}
+.big.stop{background:#fff;color:var(--ink)}
+.player .st{font-size:12.5px;color:rgba(255,255,255,.72);margin:9px 0 0;min-height:1em}
+.card.now{border-color:var(--thread);box-shadow:0 0 0 2px var(--thread-soft)}
+.fromhere{background:none;border:0;color:var(--muted);font-size:12.5px;font-family:inherit;
+  cursor:pointer;text-decoration:underline;padding:4px 0 0}
+
 /* ── 내 상황 만들기 ─────────────────── */
 .panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:15px 16px;margin-top:12px}
 .panel h3{margin:0 0 4px;font-size:15.5px;font-weight:700}
@@ -158,10 +174,46 @@ hr.stitch{border:0;height:16px;margin:30px 0 0;background-repeat:repeat-x;backgr
     <div class="voice" id="voiceInfo">음성 확인 중…</div>
   </div>
 
+  <div class="player">
+    <h3>자동 재생 — 손 안 대고 계속 듣기</h3>
+    <div class="opts" id="optLang">
+      <button class="opt" data-v="ru" aria-pressed="true">러시아어만</button>
+      <button class="opt" data-v="en">영어만</button>
+      <button class="opt" data-v="both">둘 다</button>
+    </div>
+    <div class="opts" id="optMore">
+      <button class="opt" data-k="meaning" aria-pressed="true">뜻 먼저</button>
+      <button class="opt" data-k="roman">한글 발음도</button>
+      <button class="opt" data-k="twice" aria-pressed="true">2번씩</button>
+      <button class="opt" data-k="gap" aria-pressed="true">따라 말할 틈</button>
+      <button class="opt" data-k="loop">끝나면 반복</button>
+      <button class="opt" data-k="mp3" aria-pressed="true">내 오디오 우선</button>
+    </div>
+    <div class="ctrl">
+      <button class="big" id="playBtn">▶ 재생</button>
+      <button class="big stop" id="stopBtn" style="flex:0 0 auto">■ 정지</button>
+    </div>
+    <p class="st" id="pStat">지금 열려 있는 묶음을 처음부터 재생합니다.</p>
+  </div>
+
   <div id="results"></div>
 
   <hr class="stitch">
   <div class="packhead"><h2>내 상황 만들기</h2><em>수첩에 영구 저장됩니다</em></div>
+
+  <div class="panel">
+    <h3>0. 오디오 파일 만들기 · 연결하기</h3>
+    <p class="hint">지금 열려 있는 묶음의 생성 요청문을 복사해 저에게 주시면 mp3를 만들어 드립니다. 받은 주소 묶음은 아래 칸에 붙여넣으세요. <b>통짜 트랙</b>(…-track-ru)이 연결되면 화면을 꺼도 끝까지 재생됩니다.</p>
+    <input type="text" id="voiceWant" placeholder="원하는 목소리 (예: 벨라루스 여성, 차분한 20대)">
+    <div class="row">
+      <button class="act" id="audReq">생성 요청문 복사</button>
+      <button class="act ghost" id="audShow">직접 보기</button>
+    </div>
+    <textarea id="audOut" rows="6" style="display:none;margin-top:8px" readonly></textarea>
+    <textarea id="audMap" rows="3" style="margin-top:9px" placeholder='{"map":{"greet-1-ru":"https://...mp3"}}'></textarea>
+    <div class="row"><button class="act" id="audSave">오디오 연결</button></div>
+    <p class="msg" id="audMsg"></p>
+  </div>
 
   <div class="panel">
     <h3>1. 상황을 적고 요청문 복사하기</h3>
@@ -429,7 +481,7 @@ const PACKS = [
 
 /* ────────── 상태 ────────── */
 let rate = 0.85;
-let ruVoice = null, enVoice = null;
+let ruVoice = null, enVoice = null, koVoice = null;
 const store = (()=>{ // 저장 실패해도 앱은 계속 동작
   let mem = {};
   try{ const t="__t"; localStorage.setItem(t,"1"); localStorage.removeItem(t);
@@ -449,6 +501,7 @@ function pickVoices(){
   ruVoice = by("be") || by("ru-by")
          || named(/milena|katya|katia|yuliya|yulia|alyona|tatyana|мил|кат/i)
          || by("ru");
+  koVoice = vs.find(v=>(v.lang||"").toLowerCase().startsWith("ko"));
   enVoice = vs.find(v=>/samantha|karen|moira|serena|zira|female/i.test(v.name||"") && (v.lang||"").startsWith("en"))
          || by("en");
   const info = document.getElementById("voiceInfo");
@@ -501,10 +554,13 @@ function cardHTML(it, key){
       <p class="say">${esc(it.ek)}</p>
       <button class="play" data-say="${esc(it.en)}" data-lang="en">영어 듣기</button>
     </div>
+    <button class="fromhere" data-from="${key.split("-").slice(-1)[0]}">여기부터 자동 재생</button>
   </article>`;
 }
 
+let SHOWN = null;
 function showPack(pack, note){
+  SHOWN = pack;
   const el = document.getElementById("results");
   el.innerHTML = `<div class="packhead"><h2>${esc(pack.name)}</h2><em>${pack.items.length}문장</em></div>`
     + (note ? `<p class="note">${esc(note)}</p>` : "")
@@ -660,6 +716,180 @@ document.addEventListener("click", e=>{
   if(!d) return;
   const i=MINE.findIndex(p=>p.id===d.dataset.del);
   if(i>-1){ MINE.splice(i,1); saveMine(); renderGrid(); showPack(PACKS[0], "묶음을 삭제했습니다."); }
+});
+
+
+/* ────────── 자동 재생 ────────── */
+let AMAP={};
+try{ AMAP=JSON.parse(store.get("audiomap")||"{}"); }catch(e){ AMAP={}; }
+const saveAmap=()=>store.set("audiomap",JSON.stringify(AMAP));
+function aKey(pack,i,lang){ return pack.id+"-"+(i+1)+"-"+lang; }
+function aURL(pack,i,lang){
+  const k=aKey(pack,i,lang);
+  return AMAP[k] || ("audio/"+k+".mp3");
+}
+let CURA=null;
+const AP={on:false,pack:null,i:0,steps:[],s:0,timer:null,
+  opt:{lang:"ru",meaning:true,roman:false,twice:true,gap:true,loop:false,mp3:true}};
+
+function voiceFor(l){ return l==="ru"?ruVoice : l==="en"?enVoice : koVoice; }
+function playURL(url,done){
+  try{
+    if(CURA){ CURA.pause(); CURA=null; }
+    const a=new Audio(url);
+    CURA=a;
+    a.onended=()=>{ CURA=null; done(); };
+    a.onerror=()=>{ CURA=null; done(true); };
+    a.play().catch(()=>{ CURA=null; done(true); });
+  }catch(e){ done(true); }
+}
+function utter(text,lang,done){
+  const u=new SpeechSynthesisUtterance(String(text).replace(/\u0301/g,""));
+  const v=voiceFor(lang);
+  if(v){ u.voice=v; u.lang=v.lang; } else { u.lang = lang==="ru"?"ru-RU":lang==="en"?"en-US":"ko-KR"; }
+  u.rate = (lang==="ko") ? Math.min(1,rate+0.15) : rate;
+  u.pitch=1.05;
+  u.onend=done; u.onerror=done;
+  speechSynthesis.speak(u);
+}
+function buildSteps(it,idx){
+  const o=AP.opt, a=[];
+  if(o.meaning && it.ko) a.push([it.ko,"ko"]);
+  if(o.roman){ const r = o.lang==="en" ? it.ek : it.rk; if(r) a.push([r,"ko"]); }
+  const main = o.lang==="en" ? [[it.en,"en",idx]]
+             : o.lang==="ru" ? [[it.ru,"ru",idx]]
+             : [[it.ru,"ru",idx],[it.en,"en",idx]];
+  const reps = o.twice?2:1;
+  for(let r=0;r<reps;r++) main.forEach(m=>{ if(m[0]) a.push(m); });
+  return a.filter(x=>x[0]);
+}
+function apStat(t){ document.getElementById("pStat").textContent=t; }
+function highlight(i){
+  document.querySelectorAll(".card").forEach((c,n)=>c.classList.toggle("now",n===i));
+  const c=document.querySelectorAll(".card")[i];
+  if(c) c.scrollIntoView({behavior:"smooth",block:"center"});
+}
+function apStop(msg){
+  AP.on=false; clearTimeout(AP.timer); speechSynthesis.cancel();
+  if(CURA){ try{CURA.pause();}catch(e){} CURA=null; }
+  document.querySelectorAll(".card").forEach(c=>c.classList.remove("now"));
+  document.getElementById("playBtn").textContent="▶ 재생";
+  apStat(msg||"정지했습니다.");
+}
+function apNextItem(){
+  if(!AP.on) return;
+  if(AP.i>=AP.pack.items.length){
+    if(AP.opt.loop){ AP.i=0; } else { apStop("끝까지 재생했습니다."); return; }
+  }
+  AP.steps=buildSteps(AP.pack.items[AP.i],AP.i); AP.s=0;
+  highlight(AP.i);
+  apStat(`${AP.pack.name} · ${AP.i+1} / ${AP.pack.items.length}`);
+  try{
+    if("mediaSession" in navigator){
+      navigator.mediaSession.metadata=new MediaMetadata({
+        title:AP.pack.items[AP.i].ko||"회화", artist:AP.pack.name, album:"루슈닉 회화수첩"});
+    }
+  }catch(e){}
+  apStep();
+}
+function apStep(){
+  if(!AP.on) return;
+  if(AP.s>=AP.steps.length){
+    AP.i++;
+    AP.timer=setTimeout(apNextItem, AP.opt.gap?1800:400);
+    return;
+  }
+  const [t,l,idx]=AP.steps[AP.s++];
+  const after=()=>{ if(!AP.on) return; AP.timer=setTimeout(apStep, AP.opt.gap?700:180); };
+  if(AP.opt.mp3 && l!=="ko" && idx!=null){
+    playURL(aURL(AP.pack,idx,l), fail=>{ if(fail) utter(t,l,after); else after(); });
+  }else{
+    utter(t,l,after);
+  }
+}
+function trackURL(pack){
+  const l = AP.opt.lang==="en" ? "en" : "ru";
+  return AMAP[pack.id+"-track-"+l] || null;
+}
+function playTrack(pack,url){
+  speechSynthesis.cancel();
+  if(CURA){ try{CURA.pause();}catch(e){} CURA=null; }
+  const a=new Audio(url);
+  a.loop=!!AP.opt.loop;
+  CURA=a; AP.on=true; AP.pack=pack;
+  document.getElementById("playBtn").textContent="⏸ 일시정지";
+  apStat(`${pack.name} · 통짜 트랙 재생 — 화면을 꺼도 계속 나옵니다.`);
+  try{
+    if("mediaSession" in navigator){
+      navigator.mediaSession.metadata=new MediaMetadata({
+        title:pack.name, artist:"러시아어 회화", album:"루슈닉 회화수첩"});
+      navigator.mediaSession.setActionHandler("pause",()=>{ a.pause(); });
+      navigator.mediaSession.setActionHandler("play",()=>{ a.play(); });
+    }
+  }catch(e){}
+  a.onended=()=>{ if(!a.loop) apStop("끝까지 재생했습니다."); };
+  a.onerror=()=>{ apStat("트랙을 불러오지 못해 기기 음성으로 재생합니다."); AP.i=0; apNextItem(); };
+  a.play().catch(()=>{ apStat("재생 버튼을 한 번 더 눌러 주세요."); });
+}
+function apPlay(from){
+  const pack = SHOWN || PACKS[0];
+  if(!pack||!pack.items.length){ apStat("재생할 문장이 없습니다."); return; }
+  const tu = AP.opt.mp3 ? trackURL(pack) : null;
+  if(tu && !from){ playTrack(pack,tu); return; }
+  if(!("speechSynthesis" in window)){ apStat("이 브라우저는 음성 재생을 지원하지 않습니다."); return; }
+  speechSynthesis.cancel();
+  AP.on=true; AP.pack=pack; AP.i=from||0;
+  document.getElementById("playBtn").textContent="⏸ 일시정지";
+  apNextItem();
+}
+document.getElementById("playBtn").addEventListener("click",()=>{
+  if(AP.on) apStop("일시정지. 다시 누르면 처음부터 갑니다."); else apPlay(0);
+});
+document.getElementById("stopBtn").addEventListener("click",()=>apStop());
+document.getElementById("optLang").addEventListener("click",e=>{
+  const b=e.target.closest(".opt"); if(!b) return;
+  AP.opt.lang=b.dataset.v;
+  b.parentNode.querySelectorAll(".opt").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));
+});
+document.getElementById("optMore").addEventListener("click",e=>{
+  const b=e.target.closest(".opt"); if(!b) return;
+  const k=b.dataset.k, v=!(b.getAttribute("aria-pressed")==="true");
+  AP.opt[k]=v; b.setAttribute("aria-pressed",v?"true":"false");
+});
+function audReqText(){
+  const p=SHOWN||PACKS[0];
+  const want=document.getElementById("voiceWant").value.trim()||"벨라루스·러시아어권 여성, 차분하고 또렷한 목소리";
+  const lang=AP.opt.lang==="en"?"영어":AP.opt.lang==="both"?"러시아어와 영어 둘 다":"러시아어";
+  const lines=p.items.map((it,i)=>`${i+1}. RU: ${it.ru}\n   EN: ${it.en}`).join("\n");
+  return `아래 문장들을 Higgsfield 음성으로 만들어줘.\n\n묶음 id: ${p.id}\n묶음 이름: ${p.name}\n언어: ${lang}\n목소리: ${want}\n\n문장\n${lines}\n\n만든 뒤 재생 주소를 아래 형식으로만 줘.\n{"map":{"${p.id}-1-ru":"주소","${p.id}-1-en":"주소"}}`;
+}
+document.getElementById("audShow").addEventListener("click",()=>{
+  const b=document.getElementById("audOut"); b.value=audReqText(); b.style.display="block"; b.select();
+  say("audMsg","길게 눌러 복사하세요.",true);
+});
+document.getElementById("audReq").addEventListener("click",async()=>{
+  const t=audReqText();
+  try{ await navigator.clipboard.writeText(t); say("audMsg","복사했습니다. 대화창에 붙여넣으세요.",true); }
+  catch(e){ const b=document.getElementById("audOut"); b.value=t; b.style.display="block"; b.select();
+            say("audMsg","자동 복사가 막혔습니다. 아래 글을 복사하세요."); }
+});
+document.getElementById("audSave").addEventListener("click",()=>{
+  const raw=document.getElementById("audMap").value.trim();
+  if(!raw){ say("audMsg","붙여넣은 내용이 없습니다."); return; }
+  try{
+    let t=raw.replace(/^```[a-z]*\s*/i,"").replace(/```$/,"").trim();
+    const o=JSON.parse(t.slice(t.indexOf("{"),t.lastIndexOf("}")+1));
+    const m=o.map||o; let n=0;
+    Object.keys(m).forEach(k=>{ if(typeof m[k]==="string" && /^https?:/.test(m[k])){ AMAP[k]=m[k]; n++; } });
+    if(!n) throw new Error("empty");
+    saveAmap(); document.getElementById("audMap").value="";
+    say("audMsg",`오디오 ${n}개를 연결했습니다. 이제 화면을 꺼도 재생됩니다.`,true);
+  }catch(e){ say("audMsg","읽지 못했습니다 — 받은 코드 상자를 통째로 붙여넣으세요."); }
+});
+
+document.addEventListener("click",e=>{
+  const f=e.target.closest("[data-from]"); if(!f) return;
+  apPlay(parseInt(f.dataset.from,10)||0);
 });
 
 showPack(PACKS[0]);
