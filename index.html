@@ -184,7 +184,9 @@ hr.stitch{border:0;height:16px;margin:30px 0 0;background-repeat:repeat-x;backgr
     <div class="opts" id="optMore">
       <button class="opt" data-k="meaning" aria-pressed="true">뜻 먼저</button>
       <button class="opt" data-k="roman">한글 발음도</button>
-      <button class="opt" data-k="twice" aria-pressed="true">2번씩</button>
+      <button class="opt rep" data-r="1">1번씩</button>
+      <button class="opt rep" data-r="2" aria-pressed="true">2번씩</button>
+      <button class="opt rep" data-r="3">3번씩</button>
       <button class="opt" data-k="gap" aria-pressed="true">따라 말할 틈</button>
       <button class="opt" data-k="loop">끝나면 반복</button>
       <button class="opt" data-k="mp3" aria-pressed="true">내 오디오 우선</button>
@@ -730,7 +732,7 @@ function aURL(pack,i,lang){
 }
 let CURA=null;
 const AP={on:false,pack:null,i:0,steps:[],s:0,timer:null,
-  opt:{lang:"ru",meaning:true,roman:false,twice:true,gap:true,loop:false,mp3:true}};
+  opt:{lang:"ru",meaning:true,roman:false,reps:2,gap:true,loop:false,mp3:true}};
 
 function voiceFor(l){ return l==="ru"?ruVoice : l==="en"?enVoice : koVoice; }
 function playURL(url,done){
@@ -759,7 +761,7 @@ function buildSteps(it,idx){
   const main = o.lang==="en" ? [[it.en,"en",idx]]
              : o.lang==="ru" ? [[it.ru,"ru",idx]]
              : [[it.ru,"ru",idx],[it.en,"en",idx]];
-  const reps = o.twice?2:1;
+  const reps = o.reps||2;
   for(let r=0;r<reps;r++) main.forEach(m=>{ if(m[0]) a.push(m); });
   return a.filter(x=>x[0]);
 }
@@ -816,9 +818,11 @@ function playTrack(pack,url){
   if(CURA){ try{CURA.pause();}catch(e){} CURA=null; }
   const a=new Audio(url);
   a.loop=!!AP.opt.loop;
+  a.playbackRate = rate<0.8 ? 0.75 : (rate<1 ? 0.9 : 1);
+  a.preservesPitch=true;
   CURA=a; AP.on=true; AP.pack=pack;
   document.getElementById("playBtn").textContent="⏸ 일시정지";
-  apStat(`${pack.name} · 통짜 트랙 재생 — 화면을 꺼도 계속 나옵니다.`);
+  apStat(`${pack.name} · 통짜 트랙 재생 — 화면을 꺼도 계속 나옵니다.` + (a.loop?" 무한 반복 켜짐.":""));
   try{
     if("mediaSession" in navigator){
       navigator.mediaSession.metadata=new MediaMetadata({
@@ -853,6 +857,11 @@ document.getElementById("optLang").addEventListener("click",e=>{
 });
 document.getElementById("optMore").addEventListener("click",e=>{
   const b=e.target.closest(".opt"); if(!b) return;
+  if(b.dataset.r){
+    AP.opt.reps=parseInt(b.dataset.r,10);
+    document.querySelectorAll(".opt.rep").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));
+    return;
+  }
   const k=b.dataset.k, v=!(b.getAttribute("aria-pressed")==="true");
   AP.opt[k]=v; b.setAttribute("aria-pressed",v?"true":"false");
 });
