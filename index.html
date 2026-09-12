@@ -142,6 +142,7 @@ hr.stitch{border:0;height:16px;margin:30px 0 0;background-repeat:repeat-x;backgr
 .act.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);font-weight:500}
 .msg{font-size:13px;margin:9px 0 0;color:var(--thread);min-height:1em}
 .mine{border-color:var(--thread-soft)}
+body.offline .voice::after{content:" · 오프라인 모드";color:var(--thread)}
 .del{background:none;border:0;color:var(--muted);font-size:12.5px;font-family:inherit;
   cursor:pointer;text-decoration:underline;padding:0}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -256,7 +257,7 @@ hr.stitch{border:0;height:16px;margin:30px 0 0;background-repeat:repeat-x;backgr
 
 <footer>
   <div class="band faint" style="margin-bottom:14px"></div>
-  <p><b>홈 화면에 추가</b> — Safari 하단 공유 버튼 → ‘홈 화면에 추가’. 아이콘이 생기고, 한 번 연 뒤에는 인터넷 없이도 열립니다.</p>
+  <p><b>홈 화면에 추가</b> — Safari 하단 공유 버튼 → ‘홈 화면에 추가’. 아이콘이 생기고, 한 번 열어두면 <b>인터넷 없이도</b> 실행됩니다. 오디오 트랙은 한 번 재생한 것부터 오프라인에 저장됩니다.</p>
   <p><b>음성</b> — 아이폰에 벨라루스어 음성이 없으면 러시아어 여성 음성이 자동 선택됩니다. 설정 → 손쉬운 사용 → 콘텐츠 말하기 → 음성 → 러시아어에서 Milena(밀레나)를 받으면 소리가 훨씬 또렷해집니다.</p>
   <p><b>한글 발음은 근사치입니다.</b> ы, щ, л, р, в 는 한글로 정확히 적을 수 없으니 소리를 듣고 따라 하세요.</p>
 </footer>
@@ -900,6 +901,16 @@ document.addEventListener("click",e=>{
   const f=e.target.closest("[data-from]"); if(!f) return;
   apPlay(parseInt(f.dataset.from,10)||0);
 });
+
+/* ────────── 오프라인 설치 ────────── */
+if("serviceWorker" in navigator && location.protocol.startsWith("http")){
+  window.addEventListener("load",()=>{
+    navigator.serviceWorker.register("sw.js").catch(()=>{});
+  });
+}
+window.addEventListener("online",()=>{ document.body.classList.remove("offline"); });
+window.addEventListener("offline",()=>{ document.body.classList.add("offline"); });
+if(!navigator.onLine) document.body.classList.add("offline");
 
 showPack(PACKS[0]);
 </script>
